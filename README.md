@@ -1,0 +1,2 @@
+This is a set of tutorials for using QGIS, developed as part of the Barnard course Mapping Myth (CLCV BC3002). 
+They can be used outside of this course by anyone who is interested in working with QGIS in the domain of Greek mythology.
