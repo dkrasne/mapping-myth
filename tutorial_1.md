@@ -18,9 +18,9 @@ If you ever need to search for other available geodata, you can search for the n
 
 *N.B. The QGIS documentation includes [a comprehensive overview of the menus and ribbons](https://docs.qgis.org/latest/en/docs/user_manual/introduction/qgis_gui.html), including useful keyboard shortcuts for some of the most regularly-used commands.*
 
-1. Open a new project in QGIS (![New Project icon](images/qgis_icons/mActionFileNew.png) or Project menu > New).
+1. Open a new project in QGIS (![New Project icon](images/qgis_icons/mActionFileNew.png) or **Project menu > New**).
 
-1. Save the project (Project menu > ![Save As icon](images/qgis_icons/mActionFileSaveAs.png) Save As...) with a name like `tutorial1.qgz`. While you can save the project anywhere you like on your computer, you'll want to be a bit choosier when it comes to your geodata files later on (more on this [below](#saving)). For now, I'd recommend creating a folder somewhere for all your GIS stuff, and creating another inside that for your tutorial projects.
+1. Save the project (**Project menu > ![Save As icon](images/qgis_icons/mActionFileSaveAs.png) Save As...**) with a name like `tutorial1.qgz`. While you can save the project anywhere you like on your computer, you'll want to be a bit choosier when it comes to your geodata files later on (more on this [below](#saving)). For now, I'd recommend creating a folder somewhere for all your GIS stuff, and creating another inside that for your tutorial projects.
 
 ### Adding a basemap
 
@@ -29,37 +29,37 @@ We want a background for our map so that we can see where our geographical featu
 1. There are two main methods for adding this and most other freely-available basemaps, but not all basemaps can be added by each method. Since the CAWM basemap can be added by *both* methods, I'm providing both options here so that you have the basic instructions for other basemaps that you may want to use.
 
     * **Option 1: Using WMTS**
-    1. Click ![Data Source Manager icon](images/qgis_icons/mActionDataSourceManager.png) or under the 'Layer' menu, click on 'Data Source Manager'.
-    1. Choose 'WMS/WMTS' in the lefthand menu, and click on 'New' to add a new layer.
+    1. Click ![Data Source Manager icon](images/qgis_icons/mActionDataSourceManager.png) or under the **Layer menu**, click on **Data Source Manager**.
+    1. Choose 'WMS/WMTS' in the lefthand menu, and click on <kbd>New</kbd> to add a new layer.
     1. In the 'Name' field, write "CAWM basemap" (or anything else you might want to call it).
     1. In the URL field, put: https://cawm.lib.uiowa.edu/wmts
-    1. Click 'OK'.
-    1. Now click the 'Connect' button underneath the name of the new map.
+    1. Click <kbd>OK</kbd>.
+    1. Now click the <kbd>Connect</kbd> button underneath the name of the new map.
     1. It should automatically switch to the 'Tilesets' tab, but if not, choose 'Tilesets' at the top of the window.
-    1. Select the only layer listed (some maps will have multiple layers), and click 'Add' at the bottom of the window. The basemap will be added to your empty project.
+    1. Select the only layer listed (some maps will have multiple layers), and click <kbd>Add</kbd> at the bottom of the window. The basemap will be added to your empty project.
 
     * **Option 2: Using XYZ**
-    1. Click ![Data Source Manager icon](https://docs.qgis.org/latest/en/_images/mActionDataSourceManager.png) or under the 'Layer' menu, click on 'Data Source Manager'.
-    1. Choose 'XYZ' in the lefthand menu, and click on 'New' to add a new layer.
+    1. Click ![Data Source Manager icon](images/qgis_icons/mActionDataSourceManager.png) or under the **Layer menu**, click on **Data Source Manager**.
+    1. Choose 'XYZ' in the lefthand menu, and click on <kbd>New</kbd> to add a new layer.
     1. In the 'Name' field, write "CAWM basemap" (or anything else you might want to call it).
     1. In the URL field, put: http://cawm.lib.uiowa.edu/tiles/{z}/{x}/{y}.png (Note that you can tell if a basemap requires XYZ because it will have that `{z}/{x}/{y}` in the URL!)
     1. Untick 'Max. Zoom Level' (this isn't required, but it will help to keep the map from disappearing when you zoom way in; some XYZ services will tell you their minimum and maximum zoom levels, and you can fill those in).
-    1. Click 'OK'.
-    1. Click 'Add' at the bottom of the window. The basemap will be added to your empty project:
+    1. Click <kbd>OK</kbd>.
+    1. Click <kbd>Add</kbd> at the bottom of the window. The basemap will be added to your empty project.
 
-        <figure>
+    <figure>
 
-        ![loaded basemap](images/tutorial_1/add_basemap.png)
-        
-        <figcaption><b>The newly-loaded basemap.</b>
-        </figcaption>
-        </figure>
+    <kbd>![loaded basemap](images/tutorial_1/add_basemap.png)</kbd>
+    
+    <figcaption><b>The newly-loaded basemap.</b>
+    </figcaption>
+    </figure>
 
     Once you have gone through either process once, the connection is stored in QGIS; for future maps, you can simply double click on the layer in the Browser panel to add it.
 
-1. **Save your project!** (![Save icon](images/qgis_icons/mActionFileSave.png) or Project menu > Save). Saving frequently is very important, as QGIS can sometimes crash. You don't want to lose lots of hard work!
+1. **Save your project!** (![Save icon](images/qgis_icons/mActionFileSave.png) or **Project menu > Save**.) Saving frequently is very important, as QGIS can sometimes crash. You don't want to lose lots of hard work!
 
-1. Zoom into the area around Greece and the Mediterranean (you can double-click with the hand icon, or select the zoom magnifying class and single-click).
+1. Zoom into the area around Greece and the Mediterranean (you can double-click with the default hand icon (![hand icon](images/qgis_icons/mActionPan.png)), or select the zoom magnifying glass (![zoom in icon](images/qgis_icons/mActionZoomIn.png)) and single-click).
 
 
 ### Downloading and adding data
@@ -76,7 +76,7 @@ Pleiades is a good source for specific ancient world point locations; the AWMC i
 
 1. We will be downloading **inland water**, so go to the 'inland_water' folder.
 
-    There are two different versions of this file: a shapefile (in .zip format) and a GeoJSON file. We'll download both of them.
+    There are two different versions of this file: a shapefile (in `.zip` format) and a GeoJSON file. We'll download both of them.
 
 1. Click on the `inland-water-OSM.geojson` file. It should show you a map, although larger files will not do so.
 
@@ -92,7 +92,7 @@ Pleiades is a good source for specific ancient world point locations; the AWMC i
 
 1. On your computer, open the .zip file to see its contents. It contains **multiple** files. A so-called "shapefile" is actually multiple files, and they need to stay together. (You don't need to extract the contents; QGIS can automatically read it.)
 
-1. In your QGIS project, go to Layer menu > Add Layer > ![Add Vector Layer icon](images/qgis_icons/mActionAddOgrLayer.png) Add Vector Layer...
+1. In your QGIS project, go to **Layer menu > Add Layer > ![Add Vector Layer icon](images/qgis_icons/mActionAddOgrLayer.png) Add Vector Layer...**
 
 1. Make sure that 'File' is selected under Source Type and that 'Automatic' is selected in the drop-down Encoding menu.
 
@@ -104,7 +104,7 @@ Pleiades is a good source for specific ancient world point locations; the AWMC i
 
 1. Follow the same process to add the shapefile .zip file to your map. (There won't be any options listed, this time.)
 
-1. Close the Data Source Manager by clicking Close.
+1. Close the Data Source Manager by clicking <kbd>Close</kbd>.
 
     <figure>
 
@@ -115,7 +115,7 @@ Pleiades is a good source for specific ancient world point locations; the AWMC i
     </figcaption>
     </figure>
 
-1. If the Layers panel is not open in QGIS, go to View menu > Panels and tick the 'Layers Panel' box.
+1. If the Layers panel is not open in QGIS, go to **View menu > Panels** and tick the **Layers Panel** box.
 
     The two inland water layers should be listed above the basemap in your Layers panel; if not, drag them above the basemap in the Layers panel. (If you're having trouble dragging, you can also right-click the layer and choose 'Move to Top'.)
 
@@ -127,9 +127,9 @@ Pleiades is a good source for specific ancient world point locations; the AWMC i
 
 1. Delete the shapefile (it's the one with .shp at the end of its name in the Layers panel): select that layer in the Layers panel and click ![Remove Layer icon](images/qgis_icons/mActionRemoveLayer.png) at the top of the Layers panel (you can also right-click the layer to open the context menu, and choose Remove Layer).
 
-1. On the AWMC GitHub page, go back to the main directory and download 'Physical Shapefiles Apr 2024.zip' following the same process as before.
+1. On the AWMC GitHub page, go back to the main directory and download `Physical Shapefiles Apr 2024.zip` following the same process as before.
 
-1. Add the file to your map following the earlier instructions. Notice that this time QGIS prompts you to select which layers you want &ndash; this file contains *multiple* shapefiles. Select **only** the two river layers: one is called `river polygons/rivers_polygons_final` and the other is called `rivers/awmc-osm-rivers`.
+1. Add the file to your map following the earlier instructions. Notice that this time QGIS prompts you to select which layers you want &ndash; this .zip file contains *multiple* shapefiles. Select **only** the two river layers: one is called `river polygons/rivers_polygons_final` and the other is called `rivers/awmc-osm-rivers`.
 
     <figure>
 
@@ -167,7 +167,7 @@ For Pleiades, there are two methods for acquiring data: one is useful if you onl
 
     The data that you are now looking at is the GeoJSON representation of the point marking the Temple of Apollo at Delphi, which was marked as a blue and red crosshairs on the previous page. 
 
-1. In the **GIS** folder on your computer, create a new **Pleiades Data** folder, and inside that folder create another **Individual sites** folder. (Again, you can use different names if you prefer.) Save the Delphi JSON file to this folder as 'delphi_540726.json'.
+1. In the **GIS** folder on your computer, create a new **Pleiades Data** folder, and inside that folder create another **Individual sites** folder. (Again, you can use different names if you prefer.) Save the Delphi JSON file to this folder as `delphi_540726.json`.
 
 1. Add the Delphi file to your map following the same process as before. There should now be a round dot just north of the Greek Peloponnese:
 
@@ -186,13 +186,13 @@ For Pleiades, there are two methods for acquiring data: one is useful if you onl
 
 1. Read this page up through the 'Files' section.
 
-1. Download 'pleiades_gis_data.zip' anywhere you like.
+1. Download `pleiades_gis_data.zip` anywhere you like.
 
 1. Make a new **GIS data** folder inside your **Pleiades Data** folder.
 
 1. Inside the .zip file you downloaded is a 'data' folder, and inside that is a 'gis' folder. Transfer/unzip the contents of that inner 'gis' folder into your new **Pleiades data > GIS data** folder.
 
-1. Follow the instructions under 'Quick Start' on the '*Pleiades* Data for GIS' page to add the points to your map. (When it says to load `places.csv` as delimited text, it means to choose ![delimited text icon](images/qgis_icons/mActionAddDelimitedTextLayer.png) 'Add Delimited Text Layer' under the QGIS Layer menu, or to select Delimited Text in the Data Source Manager.)
+1. Follow the instructions under 'Quick Start' on the '*Pleiades* Data for GIS' page to add the points to your map. (When it says to load `places.csv` as delimited text, it means to choose **![delimited text icon](images/qgis_icons/mActionAddDelimitedTextLayer.png) Add Delimited Text Layer** under the QGIS Layer menu, or to select Delimited Text in the Data Source Manager.)
 
     You should now have a map full of points!
 
@@ -205,11 +205,11 @@ For Pleiades, there are two methods for acquiring data: one is useful if you onl
     </figcaption>
     </figure>
 
-    ##### <u>Exploring the data</u>
-
 1. Delete the individual Delphi point layer from your map; that point is contained within this larger dataset.
 
-1. Make sure the 'places' layer is selected, then click on ![Open Attribute Table icon](images/qgis_icons/mActionOpenTable.png), or go to Layer menu > Open Attribute Table, or right-click on the 'places' layer in your layers panel and select 'Open Attribute Table'.
+    ##### <u>Exploring the data</u>
+
+1. Make sure the 'places' layer is selected, then click on ![Open Attribute Table icon](images/qgis_icons/mActionOpenTable.png), or go to **Layer menu > Open Attribute Table**, or right-click on the 'places' layer in your layers panel and select 'Open Attribute Table'.
 
     <figure>
 
