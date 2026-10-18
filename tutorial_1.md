@@ -90,7 +90,7 @@ Pleiades is a good source for specific ancient world point locations; the AWMC i
 
 1. Follow the same process with the other file (which will not show you a map when you click on it).
 
-1. On your computer, open the .zip file to see its contents. It contains **multiple** files. A so-called "shapefile" is actually multiple files, and they need to stay together. (You don't need to extract the contents; QGIS can automatically read it.)
+1. On your computer, open the .zip file to see its contents. It contains **multiple** files. A so-called "shapefile" is actually multiple files, and they need to stay together. (You don't need to extract the contents; QGIS can automatically read it. However, if you ever have an unzipped shapefile, you can either treat the file ending as .shp as representative of the full shapefile, or zip the five files together.)
 
 1. In your QGIS project, go to **Layer menu > Add Layer > ![Add Vector Layer icon](images/qgis_icons/mActionAddOgrLayer.png) Add Vector Layer...**
 
