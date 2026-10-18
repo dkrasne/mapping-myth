@@ -96,7 +96,7 @@ Pleiades is a good source for specific ancient world point locations; the AWMC i
 
 1. Make sure that 'File' is selected under Source Type and that 'Automatic' is selected in the drop-down Encoding menu.
 
-1. Click the button with three dots at the far right of the Vector Dataset(s) field.
+1. Click the <kbd>...</kbd> button at the far right of the Vector Dataset(s) field.
 
 1. In the file selection window, navigate to the **AWMC Data** folder you created earlier. Select the geojson file and click Open (or double-click it).
 
@@ -240,16 +240,24 @@ You may have noticed that the Pleiades GIS Data page talks about using joins to 
 
 1. Open the attribute table again and scroll to the last column. There should now be an additional column called `place_type` &ndash; this was added thanks to the join.
 
-    <!-- 1. Close the attribute table.
+1. Close the attribute table.
 
-    1. Join `names.csv` following the same instructions; this time, Join layer = 'names', Join field = 'place_id', and Target field = 'id'; leave 'Custom field name prefix' unchecked. -->
+1. Open the attribute table for the 'names' layer. Notice that the first two entries ('Gallia' and 'Galli') are both for PID 993.
+
+1. Close the attribute table for the 'names' layer, and join the 'names' layer to the 'place' layer following the steps above. This time, Join layer = 'names', Join field = 'place_id', and Target field = 'id'; leave 'Custom field name prefix' unchecked.
+
+1. Open the attribute table for 'places'. Click on the <kbd>id</kbd> column to sort the table by PID, and scroll down to PID 993. Which name(s) got successfully joined to item 993?
+
+    As you can see, although we can join the 'names' layer to the 'places' layer, we can't do so entirely successfully using this particular joining tool, which can only make one-to-one joins (where there's exactly one item on either side of the equation). If there's a one-to-many join, we'll need to use another tool. We're not going to do that now.
+
+1. Remove the 'names' join by going to Joins in the Properties for the 'places' layer, selecting the 'names' join, and clicking the <kbd>![remove join icon](images/qgis_icons/symbologyRemove.png)</kbd> button.
 
 
 ### Filtering Data
 
 Obviously one rarely needs *all* of the Pleiades data. We can filter it based on the datapoints' attributes, location, or other aspects to only show some of the data. In this case, we'll select all the religious spots (temples, sanctuaries, and shrines) based on the value of `place_type`.
 
-1. At the top of the attribute table, click on <kbd>![Filter/Select features using form](images/qgis_icons/mActionFilterMap.png)</kbd>.
+1. At the top of the 'places' attribute table, click on <kbd>![Filter/Select features using form](images/qgis_icons/mActionFilterMap.png)</kbd>.
 
     This form allows you to specify the values on which you want to filter. If you click on the <kbd>Exclude Field</kbd> button at the end of any field, you can see the options that you have for matching criteria: you can specify a precise value (e.g., setting `id` to *Equal to (=) **540726*** would select only Delphi), or a partial string contained within a value (e.g., setting `title` to *Contains **del*** would select Delphi, Delos, Philadelpheia, etc.), or various other matching (or excluding) options.
 
@@ -274,9 +282,9 @@ Obviously one rarely needs *all* of the Pleiades data. We can filter it based on
     </figcaption>
     </figure>
 
-1. Since these sites are the only sites from Pleiades that we are (currently) interested in, we now want to save them as their own layer. Right-click on the 'places' layer in the Layers panel, and move your mouse down to 'Export' in the context menu. In the secondary menu that comes up, choose 'Save Selected Features As...'.
+1. Since these sites are the only sites from Pleiades that we are (currently) interested in, we now want to save them as their own layer. (This will also make the place-type join permanent for these sites.) Right-click on the 'places' layer in the Layers panel, and move your mouse down to 'Export' in the context menu. In the secondary menu that comes up, choose 'Save Selected Features As...'.
 
-1. In the 'Save Vector Layer as...' window that comes up, make sure that Format is set to 'GeoPackage' (this should be selected by default), and type 'religious sites' as the Layer name. For File name, click on the <kbd>...</kbd> at the right of the field, and navigate to the tutorials directory where your QGIS project is saved. Save the file as `t1_religious_sites.gpkg`. Leave all the other default options unchanged, and click <kbd>OK</kbd>.
+1. In the 'Save Vector Layer as...' window that comes up, make sure that Format is set to 'GeoPackage' (this should be selected by default), and type 'religious sites' as the Layer name. For File name, click on the <kbd>...</kbd> at the right of the field, and navigate to the tutorials directory where your QGIS project is saved. Save the file as `tutorial_1.gpkg`. Leave all the other default options unchanged, and click <kbd>OK</kbd>.
 
     You should now have a new layer on top of your old layer that contains only the religious sites that you filtered for in the previous steps. If you uncheck the 'places' layer in your Layers panel, only the religious sites will be left visible.
 
@@ -295,4 +303,4 @@ Be sure to save your project.
 
 1. Right-click on your religious sites layer and choose 'Zoom to Layer(s)' at the top of the context menu.
 
-1. Take a screenshot of your full QGIS window (including the Layers panel), save it as either a .jpg or a .png file, and submit it on CourseWorks. (Instructions for taking a screenshot [on a Macintosh are here](https://support.apple.com/en-us/102646) and [on a Windows 10 or 11 computer are here](https://support.microsoft.com/en-us/windows/apps/use-snipping-tool-to-capture-screenshots).)
+1. Take a screenshot of your full QGIS window (including the Layers panel), save it as either a .jpg or a .png file, and submit it on CourseWorks, together with your GeoPackage file. (Instructions for taking a screenshot [on a Macintosh are here](https://support.apple.com/en-us/102646) and [on a Windows 10 or 11 computer are here](https://support.microsoft.com/en-us/windows/apps/use-snipping-tool-to-capture-screenshots).)
