@@ -117,7 +117,7 @@ Pleiades is a good source for specific ancient world point locations; the AWMC i
 
 1. If the Layers panel is not open in QGIS, go to **View menu > Panels** and tick the **Layers Panel** box.
 
-    The two inland water layers should be listed above the basemap in your Layers panel; if not, drag them above the basemap in the Layers panel. (If you're having trouble dragging, you can also right-click the layer and choose 'Move to Top'.)
+    The two inland water layers should be listed above the basemap in your Layers panel (and, accordingly, visible above the basemap); if not, drag them above the basemap in the Layers panel. (If you're having trouble dragging, you can also right-click the layer and choose 'Move to Top'.)
 
 1. In the Layers panel, untick the box for the top layer. Notice that the layer beneath it, which is now revealed, appears to be identical except for the color &ndash; QGIS assigns colors randomly when it imports most vector files. (You'll learn how to change the colors in a future tutorial.)
 
@@ -125,7 +125,7 @@ Pleiades is a good source for specific ancient world point locations; the AWMC i
 
     Since GeoJSON is the more modern and flexible format, that's the one we'll use.
 
-1. Delete the shapefile (it's the one with .shp at the end of its name in the Layers panel): select that layer in the Layers panel and click ![Remove Layer icon](images/qgis_icons/mActionRemoveLayer.png) at the top of the Layers panel (you can also right-click the layer to open the context menu, and choose Remove Layer).
+1. Delete the shapefile (it's the one with .shp at the end of its name in the Layers panel): select that layer in the Layers panel and click ![Remove Layer icon](images/qgis_icons/mActionRemoveLayer.png) at the top of the Layers panel (you can also right-click the layer to open the context menu, and choose 'Remove Layer').
 
 1. On the AWMC GitHub page, go back to the main directory and download `Physical Shapefiles Apr 2024.zip` following the same process as before.
 
@@ -169,7 +169,7 @@ For Pleiades, there are two methods for acquiring data: one is useful if you onl
 
 1. In the **GIS** folder on your computer, create a new **Pleiades Data** folder, and inside that folder create another **Individual sites** folder. (Again, you can use different names if you prefer.) Save the Delphi JSON file to this folder as `delphi_540726.json`.
 
-1. Add the Delphi file to your map following the same process as before. There should now be a round dot just north of the Greek Peloponnese:
+1. Add the Delphi file to your map following the same process as before. There should now be a round dot just north of the Greek Peloponnese.
 
     <figure>
 
@@ -182,7 +182,7 @@ For Pleiades, there are two methods for acquiring data: one is useful if you onl
 
     ##### <u>Full dataset</u>
 
-1. From any Pleiades page (the main site or the Delphi page), click on 'Downloads' in the top menu bar. Scroll down to "Pleiades Data for GIS and General Use (CSV)" and click on it.
+1. From any Pleiades page (the main site or the Delphi page), click on 'Downloads' in the top menu bar. Scroll down to "Pleiades Data for GIS and General Use (CSV)" and follow the link following 'Get more information and download the latest version'.
 
 1. Read this page up through the 'Files' section.
 
@@ -192,7 +192,7 @@ For Pleiades, there are two methods for acquiring data: one is useful if you onl
 
 1. Inside the .zip file you downloaded is a 'data' folder, and inside that is a 'gis' folder. Transfer/unzip the contents of that inner 'gis' folder into your new **Pleiades data > GIS data** folder.
 
-1. Follow the instructions under 'Quick Start' on the '*Pleiades* Data for GIS' page to add the points to your map. (When it says to load `places.csv` as delimited text, it means to choose **![delimited text icon](images/qgis_icons/mActionAddDelimitedTextLayer.png) Add Delimited Text Layer** under the QGIS Layer menu, or to select Delimited Text in the Data Source Manager.)
+1. Follow the instructions under 'Quick Start' on the '*Pleiades* Data for GIS' page to add the points to your map. (When it says to load `places.csv` as delimited text, it means to choose **![delimited text icon](images/qgis_icons/mActionAddDelimitedTextLayer.png) Add Delimited Text Layer** under the QGIS Layer menu, or to select Delimited Text in the Data Source Manager. If 'Point coordinates' is not automatically selected under 'Geometry Definition', you will need to choose it.)
 
     You should now have a map full of points!
 
@@ -226,6 +226,73 @@ For Pleiades, there are two methods for acquiring data: one is useful if you onl
 
 ### Joining Data
 
-You may have noticed that the Pleiades GIS Data page talks about using joins to attach other files and get more information about the points. As discussed above, each Pleiades place has a unique numerical ID, its PID. Each of the files in the GIS data package contains additional information about many of the points, referenced by that PID. We therefore can use that value to connect the files to each other and thereby enrich our points with additional information.
+You may have noticed that the Pleiades GIS Data page talks about using joins to attach other files and get more information about the points. As noted above, each Pleiades place has a unique numerical ID, its PID. Each of the files in the GIS data package contains additional information about many of the points, referenced by that PID. We therefore can use that value to connect the files to each other and thereby enrich our points with additional information.
 
-- add Pleiades data; join with name data and place type data CSVs; filter to show just religious(?) spots (temple, sanctuary, shrine, tomb(?), __); add labels of Latin(?) names
+1. From your downloaded Pleiades GIS Data files, add `places_place_types.csv` and `names.csv` as Delimited Text. **Important: Under 'Geometry Definition', make sure to select 'No geometry (attribute only table)'.**
+
+1. Right-click on the 'places' layer and select 'Properties...'
+
+1. In the Layer Properties window, select Joins from the lefthand menu.
+
+1. Click on the green <kbd>![plus icon](images/qgis_icons/symbologyAdd.png)</kbd> at the bottom of the window. In the 'Join layer' dropdown menu, choose 'places_place_types' and make sure that 'place_id' is selected in 'Join field'. In the 'Target field' menu, choose 'id'.
+
+1. Select the 'Custom field name prefix' box and delete the text in the field below it (if the field isn't visible, click the black arrow next to 'Custom field name prefix'). Click <kbd>OK</kbd>, and then click <kbd>OK</kbd> again to close the Layer Properties window.
+
+1. Open the attribute table again and scroll to the last column. There should now be an additional column called `place_type` &ndash; this was added thanks to the join.
+
+    <!-- 1. Close the attribute table.
+
+    1. Join `names.csv` following the same instructions; this time, Join layer = 'names', Join field = 'place_id', and Target field = 'id'; leave 'Custom field name prefix' unchecked. -->
+
+
+### Filtering Data
+
+Obviously one rarely needs *all* of the Pleiades data. We can filter it based on the datapoints' attributes, location, or other aspects to only show some of the data. In this case, we'll select all the religious spots (temples, sanctuaries, and shrines) based on the value of `place_type`.
+
+1. At the top of the attribute table, click on <kbd>![Filter/Select features using form](images/qgis_icons/mActionFilterMap.png)</kbd>.
+
+    This form allows you to specify the values on which you want to filter. If you click on the <kbd>Exclude Field</kbd> button at the end of any field, you can see the options that you have for matching criteria: you can specify a precise value (e.g., setting `id` to *Equal to (=) **540726*** would select only Delphi), or a partial string contained within a value (e.g., setting `title` to *Contains **del*** would select Delphi, Delos, Philadelpheia, etc.), or various other matching (or excluding) options.
+
+1. Scroll down to the last field (`place_type`) and type 'sanctuary' into the box (the button at the end of the field should automatically change to <kbd>Contains</kbd>).
+
+1. Click <kbd>![Select Features icon](images/qgis_icons/mIconFormSelect.png) Select Features</kbd> at the bottom of the window.
+
+1. Repeat the above steps, using 'shrine' as the new value, but instead of clicking 'Select Features', click the dropdown arrow at the right side of that button and choose 'Add to Current Selection'.
+
+1. Do the same for 'temple'. In this case, notice that there are two phrases that come up in the search box ('temple' and 'temple-2') &ndash; using `Contains` as the search predicate allows 'temple' to find both.
+
+1. Do the same for 'tomb'.
+
+    A number of the points (over 1800) should now be highlighted in yellow.
+
+    <figure>
+
+    ![highlighted points](images/tutorial_1/highlighted_selection.png)
+
+    <figcaption>
+    <b>Selected religious locations</b>
+    </figcaption>
+    </figure>
+
+1. Since these sites are the only sites from Pleiades that we are (currently) interested in, we now want to save them as their own layer. Right-click on the 'places' layer in the Layers panel, and move your mouse down to 'Export' in the context menu. In the secondary menu that comes up, choose 'Save Selected Features As...'.
+
+1. In the 'Save Vector Layer as...' window that comes up, make sure that Format is set to 'GeoPackage' (this should be selected by default), and type 'religious sites' as the Layer name. For File name, click on the <kbd>...</kbd> at the right of the field, and navigate to the tutorials directory where your QGIS project is saved. Save the file as `t1_religious_sites.gpkg`. Leave all the other default options unchanged, and click <kbd>OK</kbd>.
+
+    You should now have a new layer on top of your old layer that contains only the religious sites that you filtered for in the previous steps. If you uncheck the 'places' layer in your Layers panel, only the religious sites will be left visible.
+
+    <figure>
+
+    ![religious sites](images/tutorial_1/religious_sites.png)
+
+    <figcaption>
+    <b>Religious locations</b>
+    </figcaption>
+    </figure>
+
+Be sure to save your project.
+
+## Submission Instructions
+
+1. Right-click on your religious sites layer and choose 'Zoom to Layer(s)' at the top of the context menu.
+
+1. Take a screenshot of your full QGIS window (including the Layers panel), save it as either a .jpg or a .png file, and submit it on CourseWorks. (Instructions for taking a screenshot [on a Macintosh are here](https://support.apple.com/en-us/102646) and [on a Windows 10 or 11 computer are here](https://support.microsoft.com/en-us/windows/apps/use-snipping-tool-to-capture-screenshots).)
