@@ -224,7 +224,7 @@ For Pleiades, there are two methods for acquiring data: one is useful if you onl
 
 1. Close the attribute table.
 
-### Joining Data
+### Joining data
 
 You may have noticed that the Pleiades GIS Data page talks about using joins to attach other files and get more information about the points. As noted above, each Pleiades place has a unique numerical ID, its PID. Each of the files in the GIS data package contains additional information about many of the points, referenced by that PID. We therefore can use that value to connect the files to each other and thereby enrich our points with additional information.
 
@@ -246,14 +246,14 @@ You may have noticed that the Pleiades GIS Data page talks about using joins to 
 
 1. Close the attribute table for the 'names' layer, and join the 'names' layer to the 'place' layer following the steps above. This time, Join layer = 'names', Join field = 'place_id', and Target field = 'id'; leave 'Custom field name prefix' unchecked.
 
-1. Open the attribute table for 'places'. Click on the <kbd>id</kbd> column to sort the table by PID, and scroll down to PID 993. Which name(s) got successfully joined to item 993?
+1. Open the attribute table for 'places'. Click on the <kbd>id</kbd> column to sort the table by PID, and scroll down to PID 993. Which name(s), listed in column `names_title`, got successfully joined to item 993?
 
     As you can see, although we can join the 'names' layer to the 'places' layer, we can't do so entirely successfully using this particular joining tool, which can only make one-to-one joins (where there's exactly one item on either side of the equation). If there's a one-to-many join, we'll need to use another tool. We're not going to do that now.
 
 1. Remove the 'names' join by going to Joins in the Properties for the 'places' layer, selecting the 'names' join, and clicking the <kbd>![remove join icon](images/qgis_icons/symbologyRemove.png)</kbd> button.
 
 
-### Filtering Data
+### Filtering data
 
 Obviously one rarely needs *all* of the Pleiades data. We can filter it based on the datapoints' attributes, location, or other aspects to only show some of the data. In this case, we'll select all the religious spots (temples, sanctuaries, and shrines) based on the value of `place_type`.
 
