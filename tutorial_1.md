@@ -84,7 +84,7 @@ Pleiades is a good source for specific ancient world point locations; the AWMC i
 
     <span id="saving">Depending on your browser and your setup, you may be prompted to save the file, or it may automatically save somewhere on your computer (e.g., a Downloads folder).</span> However, we don't want the file just anywhere: file locations are important, as is not needlessly replicating data all over your computer.
     
-    The specific directory names and locations that I provide in the following instructions are not themselves required: what's important is to have your files in a tidy and logical structure that enables you to know their original sources and locate them easily on your computer.
+    The specific directory names and locations on your computer that I provide in the following instructions are not themselves required: what's important is to have your files in a tidy and logical structure that enables you to know their original sources and locate them easily on your computer.
 
 1. Inside the GIS folder you created earlier on your computer, create another folder called **AWMC Data** (or another similar name). Save the file here, or move it here if it was automatically saved somewhere else.
 
