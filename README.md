@@ -7,7 +7,7 @@ They can be used outside of this course by anyone who is interested in working w
 
 0. [Installing QGIS](./tutorial_0.md)
 1. [Acquiring, adding, and selecting data](./tutorial_1.md)
-1. [Print layout and aesthetics](./tutorial_2.md)
+1. [Symbology, print layout, and aesthetics](./tutorial_2.md)
 1. [Refining and extending data](./tutorial_3.md)
 1. [Contour lines and working with rasters](./tutorial_4.md)
 1. [Sizing/clustering and binning points](./tutorial_5.md)

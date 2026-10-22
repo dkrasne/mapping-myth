@@ -1,4 +1,4 @@
-# Print layout and aesthetics
+# Symbology, print layout, and aesthetics
 
 ## Learning Objectives
 In this tutorial, you will learn how to:
@@ -15,7 +15,7 @@ In this tutorial, you will learn how to:
 
 ### Modifying symbology: colors
 
-Our first step will be to change the appearance of the symbols for points, lines, and polygons from their default colors, since the random browns, oranges, pinks, etc. that QGIS has assigned are not necessarily appropriate for our features.
+Our first step will be to change the appearance of the symbols for points, lines, and polygons from their default colors, since the random browns, greens, oranges, pinks, etc. that QGIS has assigned are not necessarily appropriate for our features.
 
 1. Open the Properties for the inland water layer. (You can do this using right-click and selecting from the context menu, as we did in the last tutorial, or you can simply double-click on the layer name.)
 
@@ -25,7 +25,7 @@ Our first step will be to change the appearance of the symbols for points, lines
 
 1. Click on 'Simple Fill'.
 
-1. In the 'Symbol layer type' dropdown, try clicking on the various different types of fill to see how they change the large patch on the top left and the layers contained within the symbol at the top right. Then return to 'Simple Fill' in the dropdown.
+1. In the 'Symbol layer type' dropdown menu, try clicking on the various different types of fill to see how they change the large patch on the top left and the layers contained within the symbol at the top right. Then return to 'Simple Fill' in the menu.
 
 1. Click on the small dropdown arrow <kbd>![dropdown icon](images/other_icons/arrow_drop_down_20px.svg)</kbd> at the right of the 'Fill color' dropdown. You should see a color triangle inside a color wheel, plus various preset color patches.
 
@@ -33,7 +33,7 @@ Our first step will be to change the appearance of the symbols for points, lines
 
 1. Using either method, set the fill color to any light blue. (If you're color blind, then use the second method, and in the 'HTML notation' box, write #33a0d8, which is [the **hexadecimal code**](https://en.wikipedia.org/wiki/Web_colors) for a medium light blue.)
 
-1. If you used the first method, click outside of the color-picker to close the dropdown, and if you used the second method, click <kbd>OK</kbd> to close the color-choosing window. Click <kbd>Apply</kbd> at the bottom of the symbology window.
+1. If you used the first method, click outside of the color-picker to close the dropdown panel, and if you used the second method, click <kbd>OK</kbd> to close the color-choosing window. Click <kbd>Apply</kbd> at the bottom of the symbology window.
 
     On your map, you will see that the color of all the bodies of water has now changed to your newly-selected light blue. You don't have to click 'Apply' every time, but you can do so if you want to see how the style looks before closing the window.
 
@@ -140,7 +140,7 @@ In the previous part of the tutorial, we customized the fill and outline colors 
 
 1. At the top of the Symbol Selector window, click <kbd>![add symbol layer icon](images/qgis_icons/symbologyAdd.png)</kbd> to add a new layer to the marker.
 
-1. If necessary, use the up or down arrows to put the new simple marker *below* the SVG marker.
+1. If necessary, use the <kbd>![move up](images/qgis_icons/mActionArrowUp.png)</kbd> or <kbd>![move down](images/qgis_icons/mActionArrowDown.png)</kbd> arrows to put the new simple marker *below* the SVG marker.
 
 1. Select the new simple marker and make the size 4mm, make the stroke color the same dark orange as your SVG marker, make the fill color white (#ffffff), and make the stroke width 0.2mm.
 
@@ -151,18 +151,83 @@ In the previous part of the tutorial, we customized the fill and outline colors 
     ![map with differentiated temple icons](images/tutorial_2/final_symbology.png)
 
     <figcaption>
-    <b>Custom symbology for temples.</b>
+    <b>Custom symbology for tombs.</b>
     </figcaption>
     </figure>
 
     The temples are now much more visible against all the other points for religious sites, and the denser clusters of sites can be observed more clearly as well.
 
+    > [!NOTE]
     > #### Choosing colors
-    > Colors should be chosen both for aesthetics and accessibility. We used blues for the rivers and bodies of water because (of course) water is traditionally depicted in blue. For the sites, however, the important thing is to choose colors that both stand out against the background and are easily distinguished from each other, including for people with various forms of color blindness. While there are many possible shades to choose from, my recommended shades of purple and orange are drawn from [ColorBrewer](https://colorbrewer2.org), a site where one can find sets of contrasting shades that work for colorblindness, black-and-white printing, etc. This is a good site to become familiar with when choosing colors for maps.
+    > Map colors should be chosen both for aesthetics and accessibility. We used blues for the rivers and bodies of water because (of course) water is traditionally depicted in blue. For the sites, however, the important thing is to choose colors that both stand out against the background and are easily distinguished from each other, including for people with various forms of color blindness. While there are many possible shades to choose from, my recommended shades of purple and orange are drawn from [ColorBrewer](https://colorbrewer2.org), a site where one can find sets of contrasting shades that work for colorblindness, black-and-white printing, etc. This is a good site to become familiar with when choosing colors for maps.
 
 ### Adding labels
 
+1. Open the Properties for your religious sites layer and go down to Labels in the left-hand menu.
+
+1. In the dropdown menu at the top of the window, change from ![no labels icon](images/qgis_icons/labelingNone.png) No Labels to ![single labels icon](images/qgis_icons/labelingSingle.png) Single Labels.
+
+1. In the new Value dropdown menu, choose `title` and click <kbd>Apply</kbd>.
+
+    <figure>
+
+    ![map with labels](images/tutorial_2/all_labels.png)
+
+    <figcaption>
+    <b>Basic labels.</b>
+    </figcaption>
+    </figure>
+
+    This is a good start, but we just want to label our tombs, and we want to make the labels more legible &ndash; currently only the ones over lighter, uncluttered backgrounds are easy to read.
+
+1. In the top dropdown menu, change to ![rule-based labels icon](images/qgis_icons/labelingRuleBased.png) Rule-based Labeling.
+
+1. There should already be one rule in the list, with the rule '(no filter)' (if not, use the <kbd>![add rule icon](images/qgis_icons/symbologyAdd.png)</kbd> button to add one); select it and click <kbd>![edit rule icon](images/qgis_icons/symbologyEdit.png)</kbd> to edit the rule.
+
+1. Give the rule a meaningful description such as 'tombs only'.
+
+1. Make sure that the radio button next to Filter is selected, and type `"place_type" = 'tomb'` into the field. (The double vs. single quotation marks and [lack of] capitalization are all critical to match exactly.) If you want to make sure that you've typed it correctly, you can click <kbd>Test</kbd>; it should return several hundred features.
+
+    > [!INFO]
+    >
+    > QGIS allows you to build very simple or very complicated expressions in order to select features and attributes for various different tools. If you want to build a more complex expression, you can click the <kbd>![expression builder icon](images/qgis_icons/mIconExpression.png)</kbd> and use the Expression Builder tool, which [you can read about in depth here](https://docs.qgis.org/3.44/en/docs/user_manual/expressions/expression.html).
+
+1. Scroll down in the Edit Rule window, and make sure that 'title' is selected in the Value box.
+
+1. Below the Lorem Ipsum text, make sure that ![text icon](images/qgis_icons/text.png) Text is highlighted in the lefthand menu. To the right of the menu, change the Font to any [sans-serif font](https://en.wikipedia.org/wiki/Sans-serif) that you find appealing (the default is Open Sans; you can leave that if you like).
+
+1. In the lefthand menu, select ![buffer icon](images/qgis_icons/labelbuffer.png) Buffer.
+
+1. Tick the 'Draw text buffer' box.
+
+1. Change Size to 0.75mm and Opacity to 80%.
+
+    If you want to see the effect that these changes have, you can change the background color of the Text Sample box by clicking the color bar underneath it and choosing a color other than white.
+
+    We're not going to change the default placement of these labels, but select ![placement icon](images/qgis_icons/labelplacement.png) Placement in the lefthand menu and look at the various options that are available there, to get a sense of how you might be able to adjust your label placement as needed.
+
+1. Click <kbd>OK</kbd>
+
+1. Click <kbd>OK</kbd> to apply your changes and close the Properties window.
+
+    <figure>
+
+    ![map with only tomb labels](images/tutorial_2/tomb_labels.png)
+
+    <figcaption>
+    <b>Tomb labels.</b>
+    </figcaption>
+    </figure>
+
+
+### Setting the projection
+
+
+
 1. 
 
+### The print layout
+
+1. 
 
 choose one non-city thing mentioned in Gottesman reading, put it on a map, give it appropriate symbology and a legible label, scale bar, compass, title, legend, use appropriate projection, __other aesthetic things?__
