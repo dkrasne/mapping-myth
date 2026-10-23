@@ -4,7 +4,7 @@
 In this tutorial, you will learn how to:
 - Apply customized colors and styles to features (points, lines, and polygons).
 - Add and style labels for features.
-- Set an appropriate map projection.
+- Set an appropriate map coordinate reference system.
 - Design a static map using Print Layout.
 
 ## Tutorial
@@ -196,15 +196,33 @@ In the previous part of the tutorial, we customized the fill and outline colors 
 
 1. Below the Lorem Ipsum text, make sure that ![text icon](images/qgis_icons/text.png) Text is highlighted in the lefthand menu. To the right of the menu, change the Font to any [sans-serif font](https://en.wikipedia.org/wiki/Sans-serif) that you find appealing (the default is Open Sans; you can leave that if you like).
 
+1. Set Size to 3mm (change Points to Millimeters in the dropdown menu).
+
 1. In the lefthand menu, select ![buffer icon](images/qgis_icons/labelbuffer.png) Buffer.
 
 1. Tick the 'Draw text buffer' box.
 
-1. Change Size to 0.75mm and Opacity to 80%.
+1. Change Size to 0.8mm and Opacity to 90%.
 
-    If you want to see the effect that these changes have, you can change the background color of the Text Sample box by clicking the color bar underneath it and choosing a color other than white.
+    If you want to see the effect that these changes will have, you can change the background color of the Text Sample box by clicking the color bar underneath it and choosing a color other than white. This allows you to see the preview more clearly.
 
-    We're not going to change the default placement of these labels, but select ![placement icon](images/qgis_icons/labelplacement.png) Placement in the lefthand menu and look at the various options that are available there, to get a sense of how you might be able to adjust your label placement as needed.
+1. Some of the names are very long. Select ![formatting icon](images/qgis_icons/labelformatting.png) Formatting in the lefthand menu, and scroll down to the 'Wrap lines to' field. Set it to 15 characters and ensure that Maximum line length is selected.
+
+1. Select ![placement icon](images/qgis_icons/labelplacement.png) Placement in the lefthand menu and set Distance to 1mm and Maximum distance to 5mm. Scroll down to Label Spacing and set it to 2mm.
+
+    Since our labels now may not be right next to our features (setting the maximum distance allows the label to move further away), we need to add some leader lines to show which label goes with which feature.
+
+1. Select ![callout icon](images/qgis_icons/labelcallout.png) Callouts in the lefthand menu, and check the box next to Draw callouts.
+
+1. Set Minimum length to 2.5mm, and set Offset from feature to 2mm.
+
+1. Click on the line in the Line style button and add a second simple line using the <kbd>![add line icon](images/qgis_icons/symbologyAdd.png)</kbd>.
+
+1. Select the lower of the two simple lines, and set its color to white (#ffffff) and its opacity to 80% following the same methods we used for setting symbol colors.
+
+1. Set the Stroke width to 6mm.
+
+1. Select the upper of the two simple lines and set its Stroke width to 3mm.
 
 1. Click <kbd>OK</kbd>
 
@@ -219,14 +237,100 @@ In the previous part of the tutorial, we customized the fill and outline colors 
     </figcaption>
     </figure>
 
+    There are many other aspects of the labels' appearance and placement that you can customize; for more complete information, refer to [the QGIS manual](https://docs.qgis.org/latest/en/docs/user_manual/style_library/label_settings.html). The main principles to be aware of are all to do with accessibility:
+    - use a sans-serif font
+    - don't use too small of a font size
+    - use buffering and/or backgrounds to aid legibility against complicated or multicolored backgrounds
+    
+    In aesthetic terms, you should always play around with your labels to see what looks best in the context of your map.
 
-### Setting the projection
 
+### Setting the coordinate reference system
 
+In order to decide what [coordinate reference system (CRS)](https://docs.qgis.org/latest/en/docs/gentle_gis_introduction/coordinate_reference_systems.html) we want to use for our map, we need to consider various aspects: how much and which part of the world we're dealing with; whether the map is for display, analysis, or travel; etc. In this case, the map is for display, and we're going to show most of the ancient Mediterranean. That means we'll be best served by a custom CRS, due to the large lateral extent of the Mediterranean, but first we'll learn how to apply an official CRS that's already stored in QGIS.
 
-1. 
+Currently our map is in EPSG:3857, or "Pseudo-Mercator," which is the standard CRS for all web maps; since the first layer we added was the basemap, which natively exists in that CRS, our map was automatically assigned that projection. (If we'd added our data first, by contrast, our map would currently be in EPSG:4326.)
+
+We can reproject our map into a different CRS. We'll start with an Equal Earth projection, which [replaced Mercator as the official UN standard](https://stuartdunn.blog/2026/09/07/projecting-emotions-mercator-and-equal-earth/) in 2026.
+
+1. Go to **Project menu > ![edit icon](images/qgis_icons/symbologyEdit.png) Properties** and choose ![CRS icon](images/qgis_icons/properties_crs.png) CRS in the lefthand menu.
+
+1. Under Predefined Coordinate Reference Systems, scroll down to ***Projected***, click on it to open it, and then scroll to *Equal Earth* and click on it to open it.
+
+1. Under *Equal Earth*, select WGS 84 / Equal Earth Greenwich, with the Authority ID EPSG:8857. Click <kbd>OK</kbd>.
+
+    <figure>
+
+    ![equal earth projection map](images/tutorial_2/equal_earth.png)
+
+    <figcaption>
+    <b>Equal Earth (Greenwich) projection.</b>
+    </figcaption>
+    </figure>
+
+    Equal Earth projections maintain an accurate *area* for all parts of the earth, but visually the features may look distorted. The most noticeable difference in the region of the ancient Mediterranean is the orientation of the Caspian Sea (now seemingly angled NW to SE, rather than running directly North-South), but Saudi Arabia and the visible portion of Africa have also lengthened somewhat.
+
+    All countries have one or more official Coordinate Reference Systems, which are used for mapping that country (or portions of it). Now we'll transform the map into the official CRS for Greece ("Greek Grid"), which perfectly preserves the shape of Greece.
+
+1. Open the CRS window again, and type 'Greek' into the Filter bar at the top. Choose GGRS87 / Greek Grid (EPSG:2100) from the results and click <kbd>OK</kbd>.
+
+    <figure>
+
+    ![Greek Grid map](images/tutorial_2/greek_grid_greece.png)
+
+    <figcaption>
+    <b>Greek Grid CRS.</b>
+    </figcaption>
+    </figure>
+
+    If we just want to show ancient (or modern) Greece, this is a great CRS to use. But if we want the entire Mediterranean, it doesn't work quite so well, and no other official CRS does a great job for that region, either. We'll create a custom CRS that's set for the parameters of our region of interest.
+
+1. In your web browser, visit [https://projectionwizard.org/](https://projectionwizard.org/).
+
+1. On the map, drag the corners of the box so that the left side is just west of Portugal, the top is just above the Sea of Azov (ancient Lake Maeotis), the right side is about halfway across the Caspian Sea, and the bottom is about halfway down Egypt. (You can zoom in on the map to make the selection easier.)
+
+1. Select the radio box under Distortion Property for Conformal.
+
+1. Under the line "Conformal projection for regional maps with an east-west extent," where it says Lambert Conformal Conic, click **WKT**, and copy the text in the box.
+
+1. In QGIS, go to **Settings menu > ![custom projections icon](images/qgis_icons/mActionCustomProjection.png) Custom Projections...**
+
+1. Click <kbd>![add new CRS icon](images/qgis_icons/symbologyAdd.png)</kbd>
+
+1. In the Name field, give your new CRS a name like "Lambert CC: Ancient Mediterranean".
+
+1. Under Definition, make sure that the Format is WKT (Recommended), and paste the text you copied from the Projection Wizard into the box. Click <kbd>OK</kbd>.
+
+1. Go to the Project Settings to set your CRS (note that QGIS has a shortcut to get to this screen: a button at the bottom right of the QGIS window, with the ![CRS icon](images/qgis_icons/mIconProjectionEnabled.png) symbol and your current CRS), and scroll to the very bottom of the Predefined Coordinate Reference Systems box. Under ***User-defined***, choose your newly-defined CRS and click <kbd>OK</kbd>.
+
+    <figure>
+
+    ![custom projection map](images/tutorial_2/custom_projection.png)
+
+    <figcaption>
+    <b>Custom Lambert Conformal Conic CRS for Mediterranean.</b>
+    </figcaption>
+    </figure>
+
+    If you scroll your map around the rest of the world, you will see that it is oddly angled and distorted, but the Mediterranean region looks "normal."
+    
+    Notice that not all of the Pleiades data is contained within the bounds of our custom CRS; if you wanted to include the data from India or Britain, for example, you would need to change the boundaries of your box in Projection Wizard and create a new custom CRS in QGIS. (You can create as many as you like; give them names that reflect their boundaries, as well as their projection.)
+
+1. Return your CRS to Pseudo-Mercator EPSG:3857.
 
 ### The print layout
+
+If we want to produce a static map for display (as part of a paper or poster, on a website, etc.), we need to compose a layout that includes the map exactly as we want it to look and various additional features, such as a legend, that allow an audience to read the map correctly.
+
+1. Go to **Project menu > ![new print layout icon](images/qgis_icons/mActionNewLayout.png) New Print Layout...**
+
+1. When prompted for a title, call it "tutorial 2 layout".
+
+1. Right-click on the blank page and choose 'Page Properties...'. In the Item Properties to the right of the layout, make sure that the Size is set to A4 and the Orientation is se to Landscape (these are usually the defaults; if not, you can change them in the dropdown menus).
+
+1. In the lefthand menu of the new layout, click ![add map icon](images/qgis_icons/mActionAddMap.png), and draw a box on the layout starting from about 1/3 down the page to near the bottom, and starting from near the left edge to about 3/4 of the way across the page. (You will next adjust the placement and size, so this is just approximate.)
+
+1. Click ![move item content icon](images/qgis_icons/mActionMoveItemContent.png) in the lefthand menu and then adjust the contents of the map by zooming and panning so that it shows approximately the same area that we defined for our custom projection. If you need to adjust the size of the box to better fit that area, click ![select/move item icon](images/qgis_icons/mActionSelect.png) in the lefthand menu and change the box size.
 
 1. 
 
