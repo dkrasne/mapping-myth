@@ -1,7 +1,7 @@
 # Mapping Myth Tutorials
 
-This is a set of tutorials for learning [QGIS](https://www.qgis.org/), developed for the Barnard course Mapping Myth (CLCV BC3002). 
-They can be used outside of this course by anyone who is interested in working with QGIS in the domain of Greek mythology. (Note that they are not intended to teach you all the *concepts* of GIS.)
+This is a set of tutorials for learning to use [QGIS](https://www.qgis.org/), developed for the Barnard course Mapping Myth (CLCV BC3002). 
+They can be used outside of this course by anyone who is interested in working with QGIS and ancient world data. (Note that they are not intended to teach you all the *concepts* of GIS.)
 
 ## List of Tutorials
 
