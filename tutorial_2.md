@@ -9,11 +9,11 @@ In this tutorial, you will learn how to:
 
 ## Tutorial
 
+Our goal in this tutorial is to make a map of tombs and other religious sites from the ancient Mediterranean. <span id="visual_hierarchy">In doing so, we will apply the rules of visual hierarchy as they pertain to [maps](https://web.archive.org/web/20171222052408/https://www.ordnancesurvey.co.uk/resources/carto-design/clear-visual-hierachy.html) and [layouts](https://ixdf.org/literature/topics/visual-hierarchy) (please click on and read these links!) to make sure that our map is easily readable.</span>
+
 1. Open the project from Tutorial 1, and use Save As to save it as a new file called `tutorial2.qgz`.
 
     This is actually unnecessary &ndash; you could keep working in your first file &ndash; but while you're learning you should keep your work for each tutorial separate.
-
-    Our goal in this tutorial is to make a map of tombs and other religious sites from the ancient Mediterranean. <span id="visual_hierarchy">In doing so, we will apply the rules of visual hierarchy as they pertain to [maps](https://web.archive.org/web/20171222052408/https://www.ordnancesurvey.co.uk/resources/carto-design/clear-visual-hierachy.html) and [layouts](https://ixdf.org/literature/topics/visual-hierarchy) (please click on and read these links!) to make sure that our map is easily readable.</span>
 
 ### Modifying symbology: colors
 
@@ -52,7 +52,7 @@ Our first step will be to change the appearance of the symbols for points, lines
     ![map with blue lakes](images/tutorial_2/open_water_symbology.png)
 
     <figcaption>
-    <b>Open water symbology.</b>
+    <b>Inland water symbology.</b>
     </figcaption>
     </figure>
 
@@ -443,7 +443,7 @@ Items in the layout should be positioned according to their importance, followin
     >
     > If you need to move multiple items at once (e.g., the rectangle outline and the map it's on top of), select the first item and then shift-click any additional items that you want to move along with it. Alternatively, use the Items panel to select multiple items.
     >
-    > If you would like to add guides to help you line things up, show you where 0.25in from the edge is, etc., you can use the Guides tab (next to the Item Properties tab) to add however many horizontal and vertical guidelines you want.
+    > If you would like to add guides to help you line things up, show you where 0.25in from the edge is, etc., you can use the Guides tab (next to the Item Properties tab) to add however many horizontal and vertical guidelines you want. These allow you to place your items with precision and do not show up on the final exported layout.
 
 #### **Customizing the map box contents**
 
