@@ -1,4 +1,4 @@
-# Refining and extending data
+# Refining and extending feature layers
 
 ## Learning Objectives
 In this tutorial, you will learn how to:
@@ -50,7 +50,7 @@ Our first step is to limit the features we're working with to just those in our 
 
     You now have a layer called 'Clipped' with just the religious sites that fall within or on the boundaries of the Greek territory.
 
-    **Important: If you close your project, you will lose any layer marked with ![memory indicator icon](images/qgis_icons/mIndicatorMemory.png). If you need to stop working on a project while you have a scratch layer in memory, right-click on the layer, select Make Permanent..., and save it to your computer.**
+    **Important: If you close your project, you will lose any layer marked with ![memory indicator icon](images/qgis_icons/mIndicatorMemory.png). If you need to stop working on a project while you have a scratch layer in memory, and you will still need to use the layer, right-click on the layer, select Make Permanent..., and save it to your computer.**
 
 1. Select your new layer in the Layers panel and open the Attribute Table. (See [Tutorial #1](./tutorial_1.md) if you forget how to do this.)
 
@@ -82,11 +82,7 @@ Our next step is to find the regions within half a mile of our freshwater areas.
 
     #### Reprojecting
 
-    Although our next step will be to create a 0.5mi buffer zone around all the freshwater features, this cannot be done in our current CRS: when asking QGIS to do what is, effectively, "distance math," we need to work in an **equal area projection**. We will need to make a new CRS (since there is no existing equal area CRS that spans the entire Mediterranean), and then reproject each of the relevant layers into that CRS.
-
-1. Using [Projection Wizard](https://projectionwizard.org/), mark out an area that goes from Valencia (in Spain) in the west to Tbilisi (in Georgia) in the east, and from the north edge of the Sea of Azov to the southern edge of the Nile delta (around Cairo).
-
-1. Make sure that you have Equal-area selected in the lefthand menu, then copy the WKT string for the Albers equal-area conic projection. Create a custom projection in QGIS (see [Tutorial #2](./tutorial_2.md#setting-the-coordinate-reference-system) if you forget how to do this); give it a name like 'Albers EAC: Greek territory'.
+    Although our next step will be to create a 0.5mi buffer zone around all the freshwater features, this cannot be done in our current CRS: when asking QGIS to do what is, effectively, "distance math," we want to work in a **conformal projection** to accurately measure that distance around our features. Since there is no existing conformal CRS that is optimized for the entire Mediterranean, we need to make a new one (fortunately, we already did so in the previous tutorial), and then reproject each of the relevant layers into that CRS.
 
 1. In the Processing Toolbox, search for 'reproject' and under Vector general, select 'Reproject layer'.
 
@@ -99,11 +95,11 @@ Our next step is to find the regions within half a mile of our freshwater areas.
     - Physical Shapefiles ... awmc-osm-rivers.shp
     - Physical Shapefiles ... rivers_polygons_final.shp
 
-1. In the first row, set **Target CRS** to your newly-created CRS by clicking <kbd>![Select CRS icon](images/qgis_icons/mActionSetProjection.png)</kbd> and selecting your new Albers EAC CRS from ***User-defined*** at the bottom of the list. Use <kbd>![back button](images/qgis_icons/mActionArrowLeft.png)</kbd> to return to the main window.
+1. In the first row, set **Target CRS** to the custom CRS you created in [Tutorial #2](tutorial_2.md#setting-the-coordinate-reference-system) by clicking <kbd>![Select CRS icon](images/qgis_icons/mActionSetProjection.png)</kbd> and selecting your custom CRS from ***User-defined*** at the bottom of the list. Use <kbd>![back button](images/qgis_icons/mActionArrowLeft.png)</kbd> to return to the main window.
 
 1. At the top of the **Target CRS** column, click *Autofill...* and choose Fill Down. All the rows should be populated with your new CRS.
 
-1. At the end of the first row, click on <kbd>...</kbd> and select Create Temporary Layer. Use *Autofill* to fill this choice downward into all the rows.
+1. At the end of the first row, click on <kbd>...</kbd> and select **`Create Temporary Layer`**. Use *Autofill* to fill this choice downward into all the rows.
 
 1. In the Reprojected column, give each layer a name to distinguish it, e.g., 'lakes_etc_reproj', 'tt_springs_reproj', etc.
 
@@ -123,7 +119,7 @@ Our next step is to find the regions within half a mile of our freshwater areas.
 
 1. In the **Distance** column, set the first row to 805 and Autofill it downwards.
 
-    805 represents 805 meters (which is the native unit of the Equal Albers projection), and 805 meters is approximately equal to 1/2 mile. (If we were running this as a single process, we could specify that we wanted to use miles and just put 0.5, but the batch process gives us less flexibility &ndash; it also means we don't have to do this five times in a row.)
+    805 represents 805 meters (which is the native unit of the Lambert Conformal Conic projection), and 805 meters is approximately equal to 1/2 mile. (If we were running this as a single process, we could specify that we wanted to use miles and just put 0.5, but the batch process gives us less flexibility &ndash; it also means we don't have to do this five times in a row.)
 
 1. In the **Dissolve result** column, select Yes in the first row and autofill it downward.
 
@@ -135,7 +131,7 @@ Our next step is to find the regions within half a mile of our freshwater areas.
 
     You should now have an additional five new polygon layers.
 
-1. Do a reality-check: use the ![measure line tool icon](images/qgis_icons/mActionMeasure.png) measuring tool to measure the width of a river line, the margins around a spring or lake, etc. If anything looks off, delete the problematic layers and run the process again.
+1. Do a reality-check: use the ![measure line tool icon](images/qgis_icons/mActionMeasure.png) measuring tool to measure the width of a river buffer, the margins around a spring or lake, etc. They should each be about half a mile (a river buffer should therefore be 1 mile all the way across). If anything looks off, delete the problematic layers and run the process again.
 
 ### Modifying feature layers: merging
 
@@ -145,7 +141,7 @@ When it comes to seeing which temples are within 1/2 mile of water, we only want
 
 1. Under Input layers, click <kbd>...</kbd> and select your five new buffered layers. Click <kbd>OK</kbd>.
 
-1. Since we want our output layer to be in the same CRS as our religious sites, under Destination CRS, select Project CRS: EPSG:4326. (If for some reason your project CRS is different, you will need to choose EPSG:4326 from the full CRS list using <kbd>![select CRS icon](images/qgis_icons/mActionSetProjection.png)</kbd>.)
+1. Since we want our output layer to be in the same CRS as our religious sites, under Destination CRS, select Project CRS: EPSG:4326. (If for some reason your project CRS is not EPSG:4326, you will need to choose EPSG:4326 from the full CRS list using <kbd>![select CRS icon](images/qgis_icons/mActionSetProjection.png)</kbd>.)
 
 1. Leave the rest of the defaults selected, and click <kbd>Run</kbd>. You can ignore any alert messages it gives you.
 
