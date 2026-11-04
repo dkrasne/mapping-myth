@@ -9,7 +9,7 @@ They can be used outside of this course by anyone who is interested in working w
 1. [Acquiring, adding, and selecting data](./tutorial_1.md)
 1. [Symbology, print layout, and aesthetics](./tutorial_2.md)
 1. [Refining and extending feature layers](./tutorial_3.md)
-1. [Contour lines and working with rasters](./tutorial_4.md)
+1. [Working with elevation data](./tutorial_4.md)
 1. [Sizing/clustering and binning points](./tutorial_5.md)
 1. [Creating and editing data](./tutorial_6.md)
 1. [Spatial joins and visualizing numeric data](./tutorial_7.md)

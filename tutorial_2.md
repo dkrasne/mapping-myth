@@ -222,9 +222,9 @@ In the previous part of the tutorial, we customized the fill and outline colors 
 
 1. Select the lower of the two simple lines, and set its color to white (`#ffffff`) and its opacity to 80%, following the same methods we used for setting symbology colors.
 
-1. Set the Stroke width to 6mm.
+1. Set the Stroke width to 0.6mm.
 
-1. Select the upper of the two simple lines and set its Stroke width to 3mm.
+1. Select the upper of the two simple lines and set its Stroke width to 0.3mm.
 
 1. Click <kbd>OK</kbd>
 
