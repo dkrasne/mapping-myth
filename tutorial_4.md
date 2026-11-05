@@ -18,7 +18,7 @@ Each pixel of a raster contains one single value; the rasters that we are workin
 
 1. Create a new folder in your GIS folder called `SRTM elevation rasters`.
 
-1. Download [`greece_elev_srtm_rasters.zip`](./data/tutorial_4/greece_elev_srtm_rasters.zip) and extract its contents to your new folder.
+1. Download the five zip files in [this directory](./data/tutorial_4/) and extract all their contents to your new folder.
 
     > The extracted files will take up ~1.6GB of space; if you are too low on disk space to extract the files, download [`greece_elev_raster.tif`](./data/tutorial_4/greece_elev_raster.tif) instead, load only it instead of the 66 extracted files, and skip the 'Building a virtual raster' section, although you should still read it to learn the principles.
 
