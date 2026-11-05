@@ -18,9 +18,9 @@ Each pixel of a raster contains one single value; the rasters that we are workin
 
 1. Create a new folder in your GIS folder called `SRTM elevation rasters`.
 
-1. Download the five zip files in [this directory](./data/tutorial_4/) and extract all their contents to your new folder.
+1. Download [`greece_elev_srtm_rasters.zip`](https://github.com/dkrasne/mapping-myth/releases/download/tutorial4/greece_elev_srtm_rasters.zip) and extract its contents to your new folder.
 
-    > The extracted files will take up ~1.6GB of space; if you are too low on disk space to extract the files, download [`greece_elev_raster.tif`](./data/tutorial_4/greece_elev_raster.tif) instead, load only it instead of the 66 extracted files, and skip the 'Building a virtual raster' section, although you should still read it to learn the principles.
+    > The extracted files will take up ~1.6GB of space; if you are too low on disk space to extract the files, download [`greece_elev_raster.tif`](https://github.com/dkrasne/mapping-myth/releases/download/tutorial4/greece_elev_raster.tif) instead, load only it instead of the 66 extracted files, and skip the 'Building a virtual raster' section, although you should still read it to learn the principles.
 
     These 66 Digital Elevation Model (DEM) raster files come from [USGS EarthExplorer](https://earthexplorer.usgs.gov/). All but one of them are [SRTM 1 arc-second](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1) images, covering the area of modern-day Greece and the western coast of Turkey; the final file is created from four [GTOPO30](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-global-30-arc-second-elevation-gtopo30) files, covering the same area at a lower resolution; it is included because a few areas of the SRTM photos are missing data.
 
