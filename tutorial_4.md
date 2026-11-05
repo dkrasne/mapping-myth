@@ -24,7 +24,7 @@ Each pixel of a raster contains one single value; the rasters that we are workin
 
     These 66 Digital Elevation Model (DEM) raster files come from [USGS EarthExplorer](https://earthexplorer.usgs.gov/). All but one of them are [SRTM 1 arc-second](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1) images, covering the area of modern-day Greece and the western coast of Turkey; the final file is created from four [GTOPO30](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-global-30-arc-second-elevation-gtopo30) files, covering the same area at a lower resolution; it is included because a few areas of the SRTM photos are missing data.
 
-1. In the ![data source manager icon](images/qgis_icons/mActionDataSourceManager.png) **`Data Source Manger`**, select ![add raster layer icon](images/qgis_icons/mActionAddRasterLayer.png) **`Raster`**.
+1. In the ![data source manager icon](images/qgis_icons/mActionDataSourceManager.png) **`Data Source Manager`**, select ![add raster layer icon](images/qgis_icons/mActionAddRasterLayer.png) **`Raster`**.
 
 1. Click <kbd>...</kbd> and select all the extracted files. Click <kbd>Open</kbd>.
 
@@ -37,11 +37,15 @@ Each pixel of a raster contains one single value; the rasters that we are workin
 
 1. Under **`Input layers`**, click <kbd>...</kbd> at the far right.
 
+1. If `greece_gtopo30.tif` is not the first file in the list (although it should be), drag it to the top.
+
+    We want the lower resolution image that covers the entire area to be underneath our other rasters and only show through where there's missing data. Rasters earlier in this list are added first, and later rasters are drawn on top of them.
+
 1. Click <kbd>Select All</kbd>, then click <kbd>OK</kbd>.
 
 1. Under Resolution, choose **`Highest`**.
 
-    This ensures that in all overlapping areas of our two datasets, SRTM and GTOPO30, the highest resolution will be used, and the lower resolution will only be used where the SRTM rasters are missing pixels.
+    Since our SRTM and GTOPO30 rasters have different resolutions, this ensures that the output raster will be at the highest resolution.
 
 1. Under Virtual, click <kbd>...</kbd> and choose **`Save to File`**; save it to your tutorials folder as `greece_elev.vrt`.
 
@@ -367,7 +371,7 @@ We now want to visually show the height of our mountains: taller mountains shoul
 
 1. Under Symbology, choose ![graduated icon](images/qgis_icons/rendererGraduatedSymbol.png) Graduated at the top of the window.
 
-1. Under Value, choose **either** `ELEV_1` **or** `max_elev` from the dropdown menu, depending on which you decide you want to use.
+1. Under Value, choose **either** `ELEV_1` **or** `elev_max` from the dropdown menu, depending on which you decide you want to use.
 
 1. Under Symbol, click the marker, and set Opacity to 80%.
 
