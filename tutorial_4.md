@@ -6,7 +6,8 @@ In this tutorial, you will learn how to:
 - Apply a color ramp symbology.
 - Extract contour lines from an elevation raster.
 - Extract a raster footprint.
-- Sample data values.
+- Sample data values and find local statistics from a raster.
+- Use a graduated symbology.
 
 ## Tutorial
 
@@ -99,9 +100,9 @@ While showing elevation as color is useful on a screen, sometimes it's helpful i
 
 1. Set 'Interval between contour lines' to 50 (representing 50 meters, which is what SRTM height is measured in).
 
-    > **Answer this question**
+    > <span id="mountain_question">**Answer this question**
     >
-    > Looking at the first few pages of the Buxton reading on mountains, why might I have chosen 50 meters, which is really not a very extensive distance?
+    > Looking at the first few pages of [the Buxton reading on mountains](https://www.jstor.org/stable/632149), why might I have chosen 50 meters, which is really not a very extensive distance?</span>
 
 1. Leave all the other defaults, and click <kbd>Run</kbd>.
 
@@ -116,9 +117,19 @@ While showing elevation as color is useful on a screen, sometimes it's helpful i
     </figcaption>
     </figure>
 
-1. Make the temporary layer permanent: save it in your tutorials directory as a layer called `contours` in a geopackage called `tutorial_4.gpkg`.
+    If you just save this layer, it will be several gigabytes; we need to shrink it. This is not always the case, but this layer is particularly complex.
 
-1. Remove the contours scratch layer.
+1. In the Processing Toolbox, search for 'simplify', and under Vector geometry, select ![simplify icon](images/qgis_icons/mAlgorithmSimplify.png) Simplify.
+
+    This is not the primary use for Simplify, but it will work for our purposes.
+
+1. Set Tolerance to 0.00001 (this is approximately equivalent to 1m). Click <kbd>Run</kbd>.
+
+1. Make the temporary Simplified layer permanent: save it in your tutorials directory as a layer called `contours` in a geopackage called `tutorial_4.gpkg`.
+
+1. Remove the various contour scratch layers.
+
+1. In the layers panel, rename the Simplified layer to 'contours'.
 
 ### Styling the contour lines
 
@@ -228,7 +239,7 @@ Since we have contour isolines every 50 meters, we want to distinguish more majo
 
 1. Click <kbd>Run</kbd>. When the process is finished, close the window.
 
-    We now have a layer with over 10,000 more points than the original Pleiades layer &ndash; any feature that has more than one associated place type has been duplicated.
+    We now have a layer with over 10,000 more points than the original Pleiades layer &ndash; any feature that has more than one associated place type has been **duplicated**.
 
 1. Open the attribute table of the new layer ('Joined layer').
 
@@ -404,7 +415,7 @@ We now want to visually show the height of our mountains: taller mountains shoul
 
     Regardless of whether you're using `elev_max` or `ELEV_1` as your size value, we can see that there are more mountains humped over toward the left side of the chart (shorter mountains of more similar elevations) and then a longer tail stretching off to the right (taller mountains over a wider range of elevations).
 
-    The vertical lines on the histogram show us the values currently being used to separate groups of mountain elevations.
+    The vertical lines on the histogram show us the values currently being used to divide the mountain elevations into groups.
 
     Rather than assigning equal number of mountains to each size category, it might make sense to have the data grouped by more similar sizes.
 
@@ -412,13 +423,13 @@ We now want to visually show the height of our mountains: taller mountains shoul
 
 1. Change 'Equal Count (Quantile)' to 'Natural Breaks (Jenks)', and click <kbd>Classify</kbd>. (The classification will likely have already changed when you changed the method, but it's good to double-check.)
 
-    Natural Breaks will find the specified number of "groups" in the data, based on how the mountain elevations cluster together &ndash; there is no guarantee that there will be a similar number of mountains in each group, nor a guarantee that the ranges assigned to each group will be similar. There's also no "correct" number of groups, but it's hard for the human eye to tell apart more than about 5 or 6. We'll leave the number of divisions at the default value of five, although we're going to add one more group manually.
+    Natural Breaks will find the specified number of "groups" in the data, based on how the mountain elevations cluster together and the number of divisions chosen &ndash; there is no guarantee that there will be a similar number of mountains in each group, nor a guarantee that the ranges assigned to each group will be similar. There's also no "correct" number of groups, but it's hard for the human eye to tell apart more than about 5 or 6. We'll leave the number of divisions at the default value of 5, although we're going to add one more group manually.
 
 1. Change the low value of 'Size from' to 2mm, and make the largest 9mm.
 
 1. Click ![add class icon](images/qgis_icons/symbologyAdd.png) to add a class manually.
 
-1. Double-click the Values (0.00 - 0.00) for this new class and set the Upper value to 100. Double-click the Legend for this new class and adjust it so that it reads `0 - 100`. Double-click the symbol for this new class and set the size to 1mm.
+1. Double-click the value in the Values column (0.00 - 0.00) for this new class and set the Upper value to 100. Double-click the value in the Legend column for this new class and adjust it so that it reads `0 - 100`. Double-click the symbol for this new class and set the size to 1mm.
 
 1. Click <kbd>OK</kbd> to set the symbology and close the window.
 
@@ -436,3 +447,5 @@ We now want to visually show the height of our mountains: taller mountains shoul
 1. Right-click on the mountains layer in the Layers panel, and zoom to the layer extent. Take a screenshot of your full QGIS window, including the Layers panel. (You can have either or both of your elevation layers turned on.)
 
 1. On CourseWorks, submit your screenshot, the PDF of your elevations layout, and your `tutorial_4.gpkg` with its two layers ('contours' and 'mountains with elevations').
+
+1. Add your answer to [the question about elevation](#mountain_question) as a comment on your submission.

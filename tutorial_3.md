@@ -72,7 +72,7 @@ Our first step is to limit the features we're working with to just those in our 
 
 Our next step is to find the regions within half a mile of our freshwater areas.
 
-1. We need to start by selecting only the relevant types of inland water (again, see [Tutorial #1](./tutorial_1.md) if you forget how to do any of the following steps). Create a new layer from the inland water layer that is filtered on the 'TYPE' field as follows:
+1. We need to start by selecting only the relevant types of inland water. Create a new selection on the inland water layer that is filtered on the 'TYPE' field as follows (again, see [Tutorial #1](./tutorial_1.md) if you forget how to do this):
     - Select: TYPE <kbd>Equals (=)</kbd> lake
     - Add to selection: TYPE <kbd>Contains</kbd> swamp
 
@@ -82,7 +82,7 @@ Our next step is to find the regions within half a mile of our freshwater areas.
 
     #### Reprojecting
 
-    Although our next step will be to create a 0.5mi buffer zone around all the freshwater features, this cannot be done in our current CRS: when asking QGIS to do what is, effectively, "distance math," we want to work in a **conformal projection** to accurately measure that distance around our features. Since there is no existing conformal CRS that is optimized for the entire Mediterranean, we need to make a new one (fortunately, we already did so in the previous tutorial), and then reproject each of the relevant layers into that CRS.
+    Although our next step will be to create a 0.5mi buffer zone around all the freshwater features, this cannot be done in our current CRS: when asking QGIS to do what is, effectively, "distance math," we want to work in a **conformal projection** to accurately measure that distance around our features. Since there is no existing conformal CRS that is optimized for the entire Mediterranean, we need to make a new one (fortunately, we already did so in [the previous tutorial](./tutorial_2.md)), and then reproject each of the relevant layers into that CRS.
 
 1. In the Processing Toolbox, search for 'reproject' and under Vector general, select 'Reproject layer'.
 
@@ -97,7 +97,7 @@ Our next step is to find the regions within half a mile of our freshwater areas.
 
 1. In the first row, set **Target CRS** to the custom CRS you created in [Tutorial #2](tutorial_2.md#setting-the-coordinate-reference-system) by clicking <kbd>![Select CRS icon](images/qgis_icons/mActionSetProjection.png)</kbd> and selecting your custom CRS from ***User-defined*** at the bottom of the list. Use <kbd>![back button](images/qgis_icons/mActionArrowLeft.png)</kbd> to return to the main window.
 
-1. At the top of the **Target CRS** column, click *Autofill...* and choose Fill Down. All the rows should be populated with your new CRS.
+1. At the top of the **Target CRS** column, click *Autofill...* and choose Fill Down. All the rows should be populated with your custom CRS.
 
 1. At the end of the first row, click on <kbd>...</kbd> and select **`Create Temporary Layer`**. Use *Autofill* to fill this choice downward into all the rows.
 
